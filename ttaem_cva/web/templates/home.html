@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>리포트 — Report Admin</title>
+  <link rel="stylesheet" href="/static/admin/home.css">
+  <link rel="stylesheet" href="/static/admin/app_shell.css">
+</head>
+<body>
+  <main class="page">
+    {{NAV}}
+    <header class="home-hero" data-testid="manager-report-focus">
+      <div>
+        <p class="eyebrow">REPORT LIBRARY</p>
+        <h1 id="summaryExplorerTitle">리포트</h1>
+        <p class="sub">방송 요약을 최신순으로 찾고 편집 화면으로 들어갑니다. 저장과 공개는 상세 화면에서 계속 분리됩니다.</p>
+      </div>
+    </header>
+
+    <section class="explorer" aria-labelledby="summaryExplorerTitle">
+      <div class="toolbar" role="search">
+        <label class="search-field" for="search"><span aria-hidden="true">⌕</span><input id="search" type="search" aria-label="제목, 스트리머, 영상번호 검색" autocomplete="off" placeholder="제목, 스트리머, 영상번호로 찾기"><kbd>/</kbd></label>
+      </div>
+      <div id="streamerBar" class="streamer-bar" aria-label="스트리머 필터"></div>
+      <div class="list-status-row">
+        <div id="meta" class="meta" role="status" aria-live="polite">최근 요약을 불러오는 중...</div>
+        <div class="explorer-actions"><span class="sort-note">최신순 ↓</span><button id="reloadBtn" type="button">새로고침</button></div>
+      </div>
+      <div id="error" class="error" role="alert"></div>
+      <div id="list" class="summary-list" aria-live="polite" aria-busy="true"></div>
+
+    </section>
+
+
+  </main>
+  <script src="/static/admin/library.js"></script>
+</body>
+</html>

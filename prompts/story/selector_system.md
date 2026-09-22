@@ -1,0 +1,1 @@
+반드시 제공된 response_contract와 정확히 일치하는 JSON 객체만 반환하세요.

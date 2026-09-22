@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>장면 보며 편집 — Report Admin</title>
+  <link rel="stylesheet" href="/static/admin/report_workspace.css">
+  <link rel="stylesheet" href="/static/admin/app_shell.css">
+</head>
+<body class="report-workspace-page">
+  {{NAV}}
+  <main class="workspace-shell">
+    <header class="workspace-header">
+      <div>
+        <p class="eyebrow">로컬 검토 후보 · 저장해도 공개되지 않음</p>
+        <h1 id="reportTitle">장면 보며 편집</h1>
+        <p id="reportMeta" class="subtle">관리자 수정본을 불러오는 중입니다.</p>
+      </div>
+      <div class="header-actions">
+        <a id="legacyLink" class="button ghost" href="/reports">게시 준비</a>
+        <button id="previewButton" class="button ghost" type="button">저장본 미리보기</button>
+        <button id="evidenceButton" class="button" type="button">분석 근거 보기</button>
+        <button id="generatedButton" class="button ghost" type="button" hidden>새 생성본 확인</button>
+        <button id="saveButton" class="button primary" type="button" disabled>수정본 저장</button>
+      </div>
+    </header>
+
+    <div id="status" class="status" role="status" aria-live="polite">불러오는 중…</div>
+
+    <section class="workspace-grid" aria-label="영상과 장면 편집 작업공간">
+      <section class="player-panel" aria-labelledby="playerHeading">
+        <div class="panel-heading compact-heading">
+          <div>
+            <p class="eyebrow">현재 장면 확인</p>
+            <h2 id="playerHeading">영상</h2>
+          </div>
+          <div class="player-actions">
+            <span id="playbackState" class="playback-state">재생 준비 중</span>
+            <button id="pipButton" class="icon-button" type="button" disabled>작게 띄우기</button>
+            <a id="originalLink" class="icon-button" href="#" target="_blank" rel="noopener">CHZZK 원본</a>
+          </div>
+        </div>
+        <div class="video-frame">
+          <video id="video" controls playsinline preload="metadata"></video>
+          <div id="videoEmpty" class="video-empty" hidden>
+            <strong>이 화면에서 영상을 재생하지 못했습니다.</strong>
+            <span>장면 편집은 계속할 수 있으며 원본 링크로도 확인할 수 있습니다.</span>
+          </div>
+        </div>
+        <div class="now-playing">
+          <button id="previousButton" class="icon-button" type="button">← 이전 장면</button>
+          <div>
+            <strong id="selectedTitle">장면을 선택하세요</strong>
+            <span id="selectedTime">D1 · D2 · Point · Highlight를 같은 데이터로 탐색합니다.</span>
+          </div>
+          <button id="nextButton" class="icon-button" type="button">다음 장면 →</button>
+        </div>
+        <section id="workspaceTimeline" class="workspace-timeline" aria-labelledby="timelineHeading">
+          <div class="timeline-toolbar">
+            <div>
+              <strong id="timelineHeading">방송 타임라인</strong>
+              <span id="timelineStatus" role="status" aria-live="polite">막대를 선택한 뒤 끌거나 화살표 키로 조정하세요.</span>
+            </div>
+            <div class="timeline-view-controls">
+              <label>확대 <input type="range" min="1" max="8" step="0.5" value="1" data-timeline-zoom></label>
+              <output data-timeline-zoom-readout>1×</output>
+              <button type="button" data-timeline-fit>전체 보기</button>
+            </div>
+          </div>
+          <div class="timeline-viewport" data-timeline-viewport>
+            <div class="timeline-canvas" data-timeline-canvas></div>
+          </div>
+          <p class="timeline-help">Ctrl+휠로 커서 위치를 중심으로 확대합니다. D1·D2는 양쪽 손잡이로 범위를, Point는 한 시각을, Highlight는 각 구성 구간을 독립적으로 조정합니다.</p>
+        </section>
+      </section>
+
+      <div class="review-rail">
+        <section class="scene-panel" aria-labelledby="sceneHeading">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">SUMMARY × PLAYER</p>
+              <h2 id="sceneHeading">장면 탐색</h2>
+            </div>
+            <span id="sceneCount" class="count-badge">0</span>
+          </div>
+          <div id="typeTabs" class="type-tabs" role="tablist" aria-label="장면 유형">
+            <button type="button" role="tab" data-type="D1" aria-selected="true">D1</button>
+            <button type="button" role="tab" data-type="D2" aria-selected="false">D2</button>
+            <button type="button" role="tab" data-type="Point" aria-selected="false">Point</button>
+            <button type="button" role="tab" data-type="Highlight" aria-selected="false">Highlight</button>
+          </div>
+          <div class="scene-key" aria-label="장면 유형 설명">
+            <span><b>D1</b> 큰 흐름</span>
+            <span><b>D2</b> 세부 흐름</span>
+            <span><b>Point</b> 핵심 순간</span>
+            <span><b>Highlight</b> 실제 사용 구간</span>
+          </div>
+          <div class="scene-actions" aria-label="장면 구조 편집">
+            <details id="addItemMenu" class="add-item-menu">
+              <summary>+ 항목 추가</summary>
+              <div role="menu" aria-label="추가할 항목">
+                <button type="button" role="menuitem" data-add-type="D1"><strong>D1 추가</strong><span>빈 방송 구간에 큰 흐름</span></button>
+                <button type="button" role="menuitem" data-add-type="D2"><strong>D2 추가</strong><span>선택한 D1 안에 세부 흐름</span></button>
+                <button type="button" role="menuitem" data-add-type="Point"><strong>Point 추가</strong><span>현재 영상 시각에 핵심 순간</span></button>
+              </div>
+            </details>
+            <div class="history-actions" aria-label="편집 기록 · 최대 20단계">
+              <button id="undoButton" class="quiet-action" type="button" aria-keyshortcuts="Control+Z" disabled>↶ 되돌리기</button>
+              <button id="redoButton" class="quiet-action" type="button" aria-keyshortcuts="Control+Y Control+Shift+Z" disabled>다시 실행 ↷</button>
+            </div>
+          </div>
+          <div id="sceneList" class="scene-list"></div>
+        </section>
+
+        <section class="editor-panel" aria-labelledby="editorHeading">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">선택한 장면</p>
+              <h2 id="editorHeading">내용 편집</h2>
+            </div>
+            <div class="editor-heading-actions">
+              <span id="typeBadge" class="type-badge">—</span>
+              <button id="deleteItemButton" class="delete-action" type="button" hidden>삭제</button>
+            </div>
+          </div>
+          <form id="editorForm" class="editor-form">
+            <div id="editorEmpty" class="editor-empty">위에서 장면을 선택하면 제목과 시간을 고칠 수 있습니다.</div>
+            <div id="editorFields" hidden></div>
+          </form>
+          <details class="history-block">
+            <summary>이전 저장본 <span id="historyCount">0</span>개</summary>
+            <div id="historyList" class="history-list"></div>
+          </details>
+          <div class="handoff-note">
+            <strong>공개 작업은 게시 준비에서</strong>
+            <p>이 화면의 저장은 공개가 아닙니다. 게시 준비에서 저장본을 확인하고 공개용 파일을 만드세요.</p>
+            <a id="advancedLink" href="/reports">게시 준비에서 계속 →</a>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="previewDialog" class="preview-dialog">
+    <div class="dialog-heading">
+      <div><strong id="previewTitle">저장된 공개 모양 미리보기</strong><span id="previewNote">현재 저장본 기준이며 자동 공개되지 않습니다.</span></div>
+      <button id="adoptGeneratedButton" class="button primary" type="button" hidden>이 생성본으로 검토 시작</button>
+      <button id="closePreviewButton" class="icon-button" type="button">닫기</button>
+    </div>
+    <iframe id="previewFrame" title="저장된 리포트 미리보기"></iframe>
+  </dialog>
+
+  <script src="/static/admin/vendor/hls.min.js"></script>
+  <script src="/static/admin/report_workspace_state.js"></script>
+  <script src="/static/admin/report_workspace_history.js"></script>
+  <script src="/static/admin/report_player.js"></script>
+  <script src="/static/admin/report_workspace_timeline.js"></script>
+  <script src="/static/admin/report_workspace_time_scrubber.js"></script>
+  <script src="/static/admin/report_workspace.js"></script>
+</body>
+</html>

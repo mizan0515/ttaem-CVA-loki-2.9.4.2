@@ -1,0 +1,90 @@
+TTaem CVA Source-Available License 1.0
+Copyright (c) 2026 TTaem. All rights reserved except as granted below.
+Project and permission contact: ttaem00@naver.com
+Official project site: https://ttaem.com
+
+1. Scope and definitions
+This license covers the original software, prompts, documentation, templates,
+and branding supplied under this license (the "Materials"). It does not replace
+licenses identified in THIRD_PARTY_NOTICES.md or accompanying third-party files.
+"You" means the individual or entity exercising permissions under this license.
+"Written Permission" means express permission from TTaem identifying the
+authorized person or entity and the authorized activities. Silence is not consent.
+
+2. Permitted noncommercial personal use
+Subject to these conditions, you may inspect, run, and make private modifications
+of the Materials for your own noncommercial personal use. You may make a fork
+and publish proposed changes for the purpose of contributing them to the official
+project. Keep this license, copyright notices, attribution, and third-party notices
+with these copies. A contribution fork must identify itself as unofficial and
+must not be offered as an independent product, distribution, package, or service.
+Rights arising from the hosting platform's applicable terms remain unaffected.
+
+3. Commercial use requires Written Permission
+You must obtain Written Permission before any commercial use, whether or not
+you modify or distribute code. Commercial use includes paid services or work,
+business use, production or operation of monetized channels, and activities
+connected to advertising, sponsorship, subscriptions, or other revenue.
+A monetized creator summarizing their own broadcasts is included. Permission
+to use commercially does not by itself grant permission to redistribute.
+
+4. Redistribution and services
+Except for contribution forks under section 2 or separate Written Permission,
+you may not redistribute the Materials or modified versions as a separate
+product, distribution, package, installer, container, plugin, mirror, or hosted
+service. This applies even if offered without charge. You may share links to
+the official project. Private modifications do not grant distribution rights.
+Written Permission applies only to its stated recipient, scope, duration, and
+conditions; transfer or sublicensing requires express authorization.
+
+5. Generated pages and required attribution
+You may share summary pages generated through permitted noncommercial use,
+subject to rights in the underlying content. This is permission to share the
+generated page, including its necessary rendering assets, not to distribute a
+separate software product or hosted generation service. Commercial output use
+requires Written Permission. Every generated summary page, including local
+previews, exported HTML, and published copies, must retain a visible TTaem CVA
+logo and readable "ttaem.com" text linking to https://ttaem.com in its footer.
+Do not remove, obscure, crop away, or replace this attribution. A text link must
+remain visible if the logo cannot load. Required attribution does not imply
+that TTaem endorses the page or guarantees its contents.
+
+6. Branding and underlying content
+Permission to display the supplied logo is limited to required attribution,
+project documentation, and contribution review. Other trademark or brand use,
+including representing a separate service as official, requires Written Permission.
+This license does not claim ownership of your broadcasts, recordings, personal
+data, or all AI-generated content. You are responsible for obtaining permissions
+needed for source video, audio, chat, images, models, and external services.
+Project permission does not grant those third-party permissions.
+
+7. Contributions
+Contributions require the explicit contribution grant described in
+CONTRIBUTING.md before incorporation. Merely opening a pull request does not
+assign your copyright. You must have authority to submit each contribution.
+
+8. Third parties and earlier grants
+Separately licensed components retain their own terms and rights. Nothing in
+this license removes rights granted by those licenses or retrospectively revokes
+rights already validly granted under an earlier license. The official project's
+copyright holder may offer additional licenses for material they own or have
+authority to license. This is a source-available license with use restrictions;
+it is not an OSI-approved open-source license.
+
+9. Termination
+Permissions under this license terminate if you violate its conditions. Cease
+the unauthorized activities and contact TTaem for reinstatement. Termination
+does not cancel third-party rights, earlier valid independent grants, or rights
+that cannot be excluded under applicable law. TTaem may provide a written cure
+period or additional terms in a separate permission agreement.
+
+10. No warranty; limitation of liability
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE MATERIALS ARE PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. TO THAT SAME EXTENT,
+THE COPYRIGHT HOLDERS AND CONTRIBUTORS ARE NOT LIABLE FOR CLAIMS OR DAMAGES
+ARISING FROM USE OF THE MATERIALS. Mandatory legal rights are unaffected.
+
+The English text is the operative license. docs/POLICY.md explains the agreed
+policy in Korean. Individual commercial or redistribution permissions may
+expressly supplement these terms for their identified recipients.

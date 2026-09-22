@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@@REPORT_TITLE@@ — 방송 분석 리포트</title>
+@@OG_META@@
+<script src="chart.umd.min.js" defer></script>
+<link rel="stylesheet" href="report.css">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://video-phinf.pstatic.net; connect-src 'self'; frame-src https://chzzk.naver.com; base-uri 'none'; form-action 'none'">
+</head>
+<body data-default-editor-mode="companion">
+
+<div class="summary-pipeline-identity" id="summaryPipelineIdentity"
+  data-summary-mechanism="Loki" data-summary-mechanism-version="2.9.4"
+  role="status">요약 방식: Loki 2.9.4</div>
+
+<header><div class="bleed-inner">
+  <div class="crumb">@@CHANNEL_NAME@@ · VOD @@VOD_ID@@</div>
+  <h1>@@DISPLAY_TITLE@@</h1>
+  <div class="meta">
+    <span>@@PUBLISHED_AT@@</span>
+    <span>@@DURATION@@</span>
+    @@CATEGORY_META@@
+    @@TOP_VOD_LINK@@
+  </div>
+  @@EDITOR_JUMP@@
+</div></header>
+
+@@HERO_HTML@@
+
+<div class="stats-wrap"><div class="bleed-inner"><div class="stats">
+  <div class="stat"><div class="stat-label">총 채팅</div><div class="stat-value accent">@@CHAT_COUNT@@</div></div>
+  <div class="stat"><div class="stat-label">방송 길이</div><div class="stat-value">@@DURATION_STAT@@</div></div>
+  <div class="stat"><div class="stat-label">시청자 클립</div><div class="stat-value accent">@@SIGNAL_SCENE_COUNT@@</div></div>
+  @@EDITORIAL_HIGHLIGHT_STAT@@
+</div></div></div>
+
+<div class="main bleed-inner">
+
+  <div class="card">
+    <div class="card-head"><h2>채팅 밀도 시각화</h2></div>
+    <div class="card-body">@@CHAT_CHART_STATE@@<div class="chart-wrap"><canvas id="chatChart"></canvas></div></div>
+  </div>
+
+  @@TIMELINE_HTML@@
+  @@EDITORIAL_REVIEW_HTML@@
+  @@HIGHLIGHTS_HTML@@
+  @@INJECTION_WARNING_HTML@@
+  @@COMMENT_TIMELINE_HTML@@
+  @@USER_CLIPS_HTML@@
+  @@COMMUNITY_REACTION_HTML@@
+  @@NOTES_HTML@@
+  @@VIEWER_TOOLS_HTML@@
+  @@FALLBACK_HTML@@
+
+</div>
+
+
+
+@@CHART_DATA@@
+<script src="report.js" defer></script>
+
+<footer class="cva-branding"><a href="https://ttaem.com" target="_blank" rel="noopener"><img src="TTaem_CVA_logo.svg" alt="TTaem CVA" width="190" height="93"></a><p>Powered by TTaem CVA · <a href="https://ttaem.com">ttaem.com</a></p></footer>
+</body>
+</html>

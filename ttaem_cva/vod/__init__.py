@@ -1,0 +1,1 @@
+"""Scoped CVA component namespace."""
